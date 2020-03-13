@@ -1,0 +1,80 @@
+version: '3.7'
+
+services:
+
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=$DATABASE_USER
+      - POSTGRES_PASSWORD=$DATABASE_PASSWORD
+      - POSTGRES_DB=o360
+    volumes:
+      - o360-postgres-data:/var/lib/postgresql/data
+    networks:
+      - private-o360
+
+  smtp:
+    image: namshi/smtp
+    networks:
+      - private-o360
+
+  backend:
+    depends_on:
+      - postgres
+    image: o360/backend
+    environment:
+      - DATABASE_USER
+      - DATABASE_PASSWORD
+      - DATABASE_URL=jdbc:postgresql://postgres:5432/o360
+      - DATABASE_NAME=o360
+      - APPLICATION_SECRET
+      - GOOGLE_REDIRECT_URL=http://$HOSTNAME/login/google
+      - GOOGLE_CLIENT_ID
+      - GOOGLE_CLIENT_SECRET
+      - MAIL_HOST=smtp
+      - MAIL_PORT=25
+      - MAIL_SEND_FROM
+      - EXPORT_SECRET
+      - SCHEDULER_ENABLED=true
+      - FACEBOOK_REDIRECT_URL=http://$HOSTNAME/login/facebook
+      - FACEBOOK_CLIENT_ID
+      - FACEBOOK_CLIENT_SECRET
+      - VK_REDIRECT_URL=http://$HOSTNAME/login/vk
+      - VK_CLIENT_ID
+      - VK_CLIENT_SECRET
+    volumes:
+      - o360-user-uploads:/opt/docker/uploads
+      - ./backend/drive_service_key.json:/opt/docker/conf/drive_service_key.json
+      - ./backend/user_approved.html:/opt/docker/templates/user_approved.html
+      - ./backend/user_invited.html:/opt/docker/templates/user_invited.html
+    networks:
+      - private-o360
+
+  frontend:
+    image: o360/frontend
+    volumes:
+      - ./frontend/config.json:/var/www/assets/config.json
+    networks:
+      - private-o360
+
+  web-server:
+    depends_on:
+      - backend
+      - frontend
+    image: nginx:alpine
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d/
+    ports:
+      - 80:80
+    networks:
+      - private-o360
+
+volumes:
+  o360-postgres-data:
+    name: o360-postgres-data
+  o360-user-uploads:
+    name: o360-user-uploads
+
+networks:
+  private-o360:
+    name: private-o360
