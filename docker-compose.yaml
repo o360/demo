@@ -9,6 +9,7 @@ services:
       - POSTGRES_PASSWORD=$DATABASE_PASSWORD
       - POSTGRES_DB=o360
     volumes:
+      - ./backend/o360-demo-dump.sql:/docker-entrypoint-initdb.d/o360-demo-dump.sql
       - o360-postgres-data:/var/lib/postgresql/data
     networks:
       - private-o360
