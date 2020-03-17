@@ -1,5 +1,13 @@
 # Open 360 demo
 
+Demo setup project for Open360. Open360 is a system to create, manage and run surveys in a convenient way for both employees and employers.
+Please see the [github.io page](https://o360.github.io/) for more information.
+
+#### Related projects
+[Open360 Backend](https://github.com/o360/backend)
+
+[Open360 Frontend](https://github.com/o360/frontend)
+
 This project lets you set up a complete installation of Open360 system in a simple manner.
 It balances between automation of tedious stuff and providing ability to customise what might be needed to customise
 
