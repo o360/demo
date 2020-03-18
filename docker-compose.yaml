@@ -14,8 +14,13 @@ services:
     networks:
       - private-o360
 
-  smtp:
-    image: namshi/smtp
+  auth-server:
+    image: python:3.8-alpine
+    volumes:
+      - ./backend/auth-server.py:/auth-server.py
+      - ./backend/users.csv:/users.csv
+    command:
+      python auth-server.py
     networks:
       - private-o360
 
@@ -29,20 +34,13 @@ services:
       - DATABASE_URL=jdbc:postgresql://postgres:5432/o360
       - DATABASE_NAME=o360
       - APPLICATION_SECRET
-      - GOOGLE_REDIRECT_URL=http://$HOSTNAME/login/google
-      - GOOGLE_CLIENT_ID
-      - GOOGLE_CLIENT_SECRET
-      - MAIL_HOST=smtp
-      - MAIL_PORT=25
-      - MAIL_SEND_FROM
-      - EXPORT_SECRET
-      - SCHEDULER_ENABLED=true
-      - FACEBOOK_REDIRECT_URL=http://$HOSTNAME/login/facebook
-      - FACEBOOK_CLIENT_ID
-      - FACEBOOK_CLIENT_SECRET
-      - VK_REDIRECT_URL=http://$HOSTNAME/login/vk
-      - VK_CLIENT_ID
-      - VK_CLIENT_SECRET
+      - EXTERNAL_AUTH_SERVER_URL=http://auth-server:9090/
+      - MAIL_HOST=smtp.gmail.com
+      - MAIL_PORT=465
+      - MAIL_SSL=yes
+      - MAIL_USER=$GMAIL_USER
+      - MAIL_PASSWORD=$GMAIL_PASSWORD
+      - MAIL_SEND_FROM=$GMAIL_USER
     volumes:
       - o360-user-uploads:/opt/docker/uploads
       - ./backend/drive_service_key.json:/opt/docker/conf/drive_service_key.json

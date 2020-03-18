@@ -1,0 +1,4 @@
+id,username,password,first name,last name,gender
+1,johndoe@example.com,blackcat,John,Doe,m
+2,mikejohnson@example.com,redcar,Mike,Johnson,m
+3,rosejohns@example.com,whitepillow,Rose,Johns,f

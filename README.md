@@ -3,11 +3,6 @@
 Demo setup project for Open360. Open360 is a system to create, manage and run surveys in a convenient way for both employees and employers.
 Please see the [github.io page](https://o360.github.io/) for more information.
 
-#### Related projects
-[Open360 Backend](https://github.com/o360/backend)
-
-[Open360 Frontend](https://github.com/o360/frontend)
-
 This project lets you set up a complete installation of Open360 system in a simple manner.
 It balances between automation of tedious stuff and providing ability to customise what might be needed to customise
 
@@ -22,27 +17,49 @@ and [backend](https://github.com/o360/backend) according to their documentation
 - Docker
 - Docker compose
 
-## Configuration
-Most of the environment variables and configuration files are already set/provided for you,
-but there are some configuration steps you need to perform on your own:
+## Environment preparation
 
-1. [Set up Google account](https://github.com/o360/backend#setting-up-google-account)
-2. Copy downloaded `drive_service_key.json` to `backend/drive_service_key.json`
-3. Set up [auth sources](https://github.com/o360/backend#setting-up-authentication-sources)
-    * Additional environment variables can be either put to [.env](.env) file or exported in the shell
-    * For social authentication providers (if any) set **redirect urls** according to the corresponding
-    `redirect_uri` values from [frontend configuration template](frontend/config.json)
-4. Edit [frontend configuration template](frontend/config.json)
-    * Set appropriate `client_id` values for social auth providers if you decided to use those. You DO NOT
-    have to remove extra social providers templates if you don't want to. Their presence will not cause any issues
-5. *Optional* See [.env](.env) file for environment variables defaults and override them if you want. If you want your server to be accesible not by `http://localhost/` but by your public domain name, edit `HOSTNAME` env variable value
-and change the correspondig values in the [frontend configuration template](frontend/config.json). You may also have
-to add another **redirect url** to your social authentication provider settings. If some environment variables meaning
-is not clear to you, see the
-[corresponding backend documentation section](https://github.com/o360/backend#environment-variables)
+### Сlone the repository and enter the folder
+`git clone git@github.com:o360/demo.git`
+
+`cd demo`
+
+### Set up Google account
+Open360 makes use of Google Sheet API and Google Drive API to generate assesment reports, so we need to set up developer google account for that first.
+We will also use Google account to configure sending emails to Open360 users using Google SMTP server.
+
+1. Go to https://console.developers.google.com/ and create a project
+2. Getting *drive_service_key.json*: 
+    * Go to credentials section
+    * Press "CREATE CREDENTIALS" button and choose "Service account"
+    * Create credentials without role
+    * Press "Create key" and select JSON format
+    * JSON file will be downloaded automatically
+
+3. Enable following APIs for project via "Library":
+    * Google Drive API
+    * Google Sheets API
+
+4. Copy downloaded `drive_service_key.json` to `backend/drive_service_key.json`
+5. Set `GMAIL_USER` and `GMAIL_PASSWORD` environment variables (or edit [.env](.env) file)
+for the email sender account
+6. Since your upcoming Open360 installation is not known to Google, it might block outgoing emails from `GMAIL_USER`.
+To fix that allow *less secure apps* to sign in with that email at <https://myaccount.google.com/lesssecureapps>
+
+ Make sure that for your `GMAIL_USER` security settings allow unsecured apps
+since your upcoming Open360 installation
+
+## Accounts
+Open360 supports authentication via social networks, but that is not part of the demo installation.
+You can find the information on how to set up authentication using social networks, in the corresponding
+[backend](https://github.com/o360/backend#setting-up-authentication-sources) and
+[frontend](https://github.com/o360/frontend/blob/master/docs/config.md#social-login) accordingly.
+For the demo installation we shall use a simple HTTP authenticator that takes users data from
+[users.csv](backend/users.csv). You can change this file if you want to add/remove/edit users.
+First user that logs into the system, will become an admin.
 
 ## Run
-1. [Configure first](#configuration)
+1. [Prepare environment first](#environment-preparation)
 2. `docker-compose up -d`
 3. To shutdown: `docker-compose down`
 
