@@ -40,7 +40,8 @@ We will also use Google account to configure sending emails to Open360 users usi
     * Google Drive API
     * Google Sheets API
 
-4. Copy downloaded `drive_service_key.json` to `backend/drive_service_key.json`
+4. Copy downloaded json file to `backend/drive_service_key.json`
+
 5. Set `GMAIL_USER` and `GMAIL_PASSWORD` environment variables (or edit [.env](.env) file)
 for the email sender account
 6. Since your upcoming Open360 installation is not known to Google, it might block outgoing emails from `GMAIL_USER`.
