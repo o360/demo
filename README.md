@@ -56,7 +56,9 @@ By default the result of `hostname` unix command will be used, so if that return
 you don't have to set anything additional
 
 ## Accounts
-Open360 supports authentication via social networks, but that is not part of the demo installation.
+
+Open360 supports authentication via social networks or custom HTTP handler, but that for the demo installation only HTTP handler will be used, as it simplifies deployment a lot.
+
 You can find the information on how to set up authentication using social networks, in the corresponding
 [backend](https://github.com/o360/backend#setting-up-authentication-sources) and
 [frontend](https://github.com/o360/frontend/blob/master/docs/config.md#social-login) accordingly.
