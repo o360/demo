@@ -6,7 +6,7 @@ Please see the [github.io page](https://o360.github.io/) for more information.
 This project lets you set up a complete installation of Open360 system in a simple manner.
 It balances between automation of tedious stuff and providing ability to customise what might be needed to customise
 
-> ⚠️ This project is indented to be used only for demo purposes.
+> ⚠️ This manual is intended to be used only for the demonstrational deployment of open360 system.
 > It is updated less often than the corresponding [frontend](https://github.com/o360/frontend)
 and [backend](https://github.com/o360/backend) projects.
 > We do not advice to use the result setup as production Open360 instance as is.
