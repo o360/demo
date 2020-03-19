@@ -57,7 +57,7 @@ you don't have to set anything additional
 
 ## Accounts
 
-Open360 supports authentication via social networks or custom HTTP handler, but that for the demo installation only HTTP handler will be used, as it simplifies deployment a lot.
+Open360 supports authentication via social networks or custom HTTP handler, but for the demonstrational installation provided in the current manual, only HTTP handler will be used, because it simplifies the deployment a lot.
 
 You can find the information on how to set up authentication using social networks, in the corresponding
 [backend](https://github.com/o360/backend#setting-up-authentication-sources) and
