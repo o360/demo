@@ -6,7 +6,7 @@ Please see the [github.io page](https://o360.github.io/) for more information.
 This project lets you set up a complete installation of Open360 system in a simple manner.
 It balances between automation of tedious stuff and providing ability to customise what might be needed to customise
 
-> This project is indented to be used only for demo purposes.
+> ⚠️ This project is indented to be used only for demo purposes.
 > It is updated less often than the corresponding [frontend](https://github.com/o360/frontend)
 and [backend](https://github.com/o360/backend) projects.
 > We do not advice to use the result setup as production Open360 instance as is.
@@ -14,13 +14,13 @@ and [backend](https://github.com/o360/backend) projects.
 and [backend](https://github.com/o360/backend) according to their documentation
 
 ## Requirements
-- **Docker** installed from the official Docker [website](https://docs.docker.com/install/linux/docker-ce/ubuntu/).
-- **Docker Compose** installed from the official Docker [website](https://docs.docker.com/compose/install/).
+- **Docker v19.03+** installed from the official Docker [website](https://docs.docker.com/install/linux/docker-ce/ubuntu/).
+- **Docker Compose v1.25+** installed from the official Docker [website](https://docs.docker.com/compose/install/).
 
 ## Environment preparation
 
 ### Сlone the repository and enter the folder
-`git clone git@github.com:o360/demo.git`
+`git clone https://github.com/o360/demo.git`
 
 `cd demo`
 
@@ -47,8 +47,11 @@ for the email sender account
 6. Since your upcoming Open360 installation is not known to Google, it might block outgoing emails from `GMAIL_USER`.
 To fix that allow *less secure apps* to sign in with that email at <https://myaccount.google.com/lesssecureapps>
 
- Make sure that for your `GMAIL_USER` security settings allow unsecured apps
-since your upcoming Open360 installation
+### Set hostname
+Set `HOSTNAME` environment variable (or edit [.env](.env) file) to point to your host name.
+This value will be used to form all the public http addresses for Open360, i.e. frontend and backend endpoints.
+By default the result of `hostname` unix command will be used, so if that returns the desired hostname,
+you don't have to set anything additional
 
 ## Accounts
 Open360 supports authentication via social networks, but that is not part of the demo installation.
@@ -61,8 +64,8 @@ First user that logs into the system, will become an admin.
 
 ## Run
 1. [Prepare environment first](#environment-preparation)
-2. `docker-compose up -d`
-3. To shutdown: `docker-compose down`
+2. `./start.sh`
+3. To shutdown: `./stop.sh`
 
 ## Feedback
 If you think that something here is missing or not working correctly, please let us know

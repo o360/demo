@@ -15,27 +15,28 @@ class User:
     gender: str
 
 
-users = []
-with open('users.csv') as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=',')
-    next(csv_reader) # skip header
-    for row in csv_reader:
-        user = User(
-            id=row[0],
-            email=row[1],
-            password=row[2],
-            first_name=row[3],
-            last_name=row[4],
-            gender=row[5]
-        )
-        users.append(user)
-
-
 class Handler(http.server.SimpleHTTPRequestHandler):
     def do_POST(self):
         body = self.rfile.read(int(self.headers['Content-Length']))
         body = json.loads(body)
         response = None
+
+        users = []
+        with open('users.csv') as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            next(csv_reader) # skip header
+            for row in csv_reader:
+                user = User(
+                    id=row[0],
+                    email=row[1],
+                    password=row[2],
+                    first_name=row[3],
+                    last_name=row[4],
+                    gender=row[5]
+                )
+            users.append(user)
+
+
         for user in users:
             if body['username'] == user.email and body[
                     'password'] == user.password:

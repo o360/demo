@@ -1,0 +1,9 @@
+{
+  "ENV": "DEMO",
+  "API": "http://localhost/api/v1.0",
+  "TITLE_MAIN": "Open360",
+  "TITLE_NAV": "Open360",
+  "PROVIDERS": {},
+  "DEFAULT_LANG": "en",
+  "AGREEMENTS": "/assets/agreement"
+}
