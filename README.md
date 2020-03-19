@@ -20,9 +20,11 @@ and [backend](https://github.com/o360/backend) according to their documentation
 ## Environment preparation
 
 ### Сlone the repository and enter the folder
-`git clone https://github.com/o360/demo.git`
 
-`cd demo`
+```
+git clone https://github.com/o360/demo.git
+cd demo
+```
 
 ### Set up Google account
 Open360 makes use of Google Sheet API and Google Drive API to generate assesment reports, so we need to set up developer google account for that first.
