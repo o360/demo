@@ -11,7 +11,7 @@ It balances between automation of tedious stuff and providing ability to customi
 and [backend](https://github.com/o360/backend) projects.
 > We do not advice to use the result setup as production Open360 instance as is.
 > For production, we recommend deploying [frontend](https://github.com/o360/frontend)
-and [backend](https://github.com/o360/backend) according to their documentation
+and [backend](https://github.com/o360/backend) according to their documentation.
 
 ## Requirements
 - **Docker v19.03+** installed from the official Docker [website](https://docs.docker.com/install/linux/docker-ce/ubuntu/).
