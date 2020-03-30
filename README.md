@@ -13,6 +13,10 @@ and [backend](https://github.com/o360/backend) projects.
 > For production, we recommend deploying [frontend](https://github.com/o360/frontend)
 and [backend](https://github.com/o360/backend) according to their documentation.
 
+### Workflow Demonstrations
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/T32f1Z-SCGE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Requirements
 - **Docker v19.03+** installed from the official Docker [website](https://docs.docker.com/install/linux/docker-ce/ubuntu/).
 - **Docker Compose v1.25+** installed from the official Docker [website](https://docs.docker.com/compose/install/).
