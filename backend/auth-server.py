@@ -34,7 +34,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                     last_name=row[4],
                     gender=row[5]
                 )
-            users.append(user)
+                users.append(user)
 
 
         for user in users:
